@@ -1,0 +1,134 @@
+[gd_scene load_steps=16 format=3 uid="uid://bvd8y4xvww4ib"]
+
+[ext_resource type="Script" uid="uid://3eyrccb5n7rj" path="res://Assets/Scripts/playerinlevel.gd" id="1_arc0y"]
+[ext_resource type="Texture2D" uid="uid://7e5ihpl4qyrx" path="res://Assets/Images/LevelBG's/forestIntroBG.png" id="1_t7rln"]
+[ext_resource type="Texture2D" uid="uid://dwvfep6aqwqa2" path="res://Assets/Images/boat.png" id="2_6l2cf"]
+[ext_resource type="Texture2D" uid="uid://cea1qrlqkfnig" path="res://Assets/Images/forestfloor.png" id="2_8p6u1"]
+[ext_resource type="Texture2D" uid="uid://b4qexevwleibk" path="res://Assets/Images/MC.png" id="2_e2hj7"]
+[ext_resource type="PackedScene" uid="uid://b3ktd4ddnh0sa" path="res://Assets/Blueprints/basicenemy1.tscn" id="3_4gpfn"]
+[ext_resource type="Script" uid="uid://dpsieewulpsjw" path="res://Assets/Scripts/boat.gd" id="3_dc3h5"]
+[ext_resource type="Texture2D" uid="uid://b7apvbjbagdlu" path="res://Assets/Images/forestfloorstart.png" id="4_6l2cf"]
+[ext_resource type="AudioStream" uid="uid://d33br3co4smcc" path="res://Assets/Audio/beach-ambiance-16328.mp3" id="9_dc3h5"]
+
+[sub_resource type="Gradient" id="Gradient_e2hj7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.207054, 0.237376, 0.227275, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4gpfn"]
+gradient = SubResource("Gradient_e2hj7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogbvk"]
+size = Vector2(5506, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3pib"]
+size = Vector2(116, 619)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fceyy"]
+size = Vector2(56, 111)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ynsk"]
+size = Vector2(64, 115)
+
+[node name="debuglevel" type="Node2D" groups=["ForestLevel"]]
+texture_filter = 1
+texture_repeat = 1
+
+[node name="Skies" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sky" type="Sprite2D" parent="Skies"]
+position = Vector2(1984.5, 276.125)
+scale = Vector2(24.5039, 1064.25)
+texture = SubResource("GradientTexture1D_4gpfn")
+
+[node name="ForestIntroBg" type="Sprite2D" parent="Skies"]
+position = Vector2(-573, 410)
+scale = Vector2(13.9286, 18.1333)
+texture = ExtResource("1_t7rln")
+
+[node name="Boat" type="Sprite2D" parent="Skies"]
+position = Vector2(-645, 570)
+scale = Vector2(14.25, 17.9)
+texture = ExtResource("2_6l2cf")
+flip_h = true
+script = ExtResource("3_dc3h5")
+
+[node name="floor" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="floor"]
+position = Vector2(438.25, 704)
+scale = Vector2(5.36562, 5.2)
+texture = ExtResource("4_6l2cf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="floor"]
+position = Vector2(1290.75, 704)
+scale = Vector2(5.31562, 5.2)
+texture = ExtResource("2_8p6u1")
+
+[node name="Sprite2D5" type="Sprite2D" parent="floor"]
+position = Vector2(3851.25, 704)
+scale = Vector2(5.36562, 5.2)
+texture = ExtResource("2_8p6u1")
+
+[node name="Sprite2D6" type="Sprite2D" parent="floor"]
+position = Vector2(4703.75, 704)
+scale = Vector2(5.31562, 5.2)
+texture = ExtResource("2_8p6u1")
+
+[node name="Sprite2D7" type="Sprite2D" parent="floor"]
+position = Vector2(2145.25, 704)
+scale = Vector2(5.36562, 5.2)
+texture = ExtResource("2_8p6u1")
+
+[node name="Sprite2D8" type="Sprite2D" parent="floor"]
+position = Vector2(2997.75, 704)
+scale = Vector2(5.31562, 5.2)
+texture = ExtResource("2_8p6u1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+position = Vector2(2419, 634)
+shape = SubResource("RectangleShape2D_ogbvk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="floor"]
+position = Vector2(-304, 288)
+shape = SubResource("RectangleShape2D_d3pib")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(-512, 112)
+script = ExtResource("1_arc0y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(564, 407.5)
+shape = SubResource("RectangleShape2D_fceyy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(564, 408)
+scale = Vector2(0.6875, 0.875)
+texture = ExtResource("2_e2hj7")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(576, 215)
+
+[node name="playercollider" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/playercollider"]
+position = Vector2(563, 407.5)
+shape = SubResource("RectangleShape2D_7ynsk")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="BasicEnemy1" parent="." instance=ExtResource("3_4gpfn")]
+position = Vector2(371, 365)
+metadata/Enemytype = "Basicenemy1"
+metadata/Enemytier = 1
+
+[node name="BeachAmbiance" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-512, 549)
+stream = ExtResource("9_dc3h5")
+autoplay = true
+max_distance = 700.0
+attenuation = 0.366022
+
+[connection signal="body_entered" from="Player/playercollider" to="Player" method="_on_playercollider_body_entered"]

@@ -1,0 +1,239 @@
+[gd_scene load_steps=23 format=3 uid="uid://dk848bbd2s7v1"]
+
+[ext_resource type="Script" uid="uid://dihk86beb7hje" path="res://Assets/Scripts/menu.gd" id="1_aq814"]
+[ext_resource type="Shader" uid="uid://cy2ybf786meje" path="res://Assets/Scripts/shine.gdshader" id="2_ikpnn"]
+[ext_resource type="Texture2D" uid="uid://cjnhwrqhasc0p" path="res://Assets/Images/LevelBG's/MenuBG.png" id="2_vd8hb"]
+[ext_resource type="FontFile" uid="uid://dg2sgc1272hyj" path="res://Assets/Fonts/W95FA.otf" id="3_aq814"]
+[ext_resource type="Script" uid="uid://bgvf8gbjk0cxi" path="res://Assets/Scripts/character_body_2d.gd" id="4_djw8h"]
+[ext_resource type="Texture2D" uid="uid://b4qexevwleibk" path="res://Assets/Images/MC.png" id="5_5upas"]
+[ext_resource type="Texture2D" uid="uid://dwvfep6aqwqa2" path="res://Assets/Images/boat.png" id="9_5upas"]
+[ext_resource type="Script" uid="uid://dpsieewulpsjw" path="res://Assets/Scripts/boat.gd" id="9_aq814"]
+[ext_resource type="AudioStream" uid="uid://d33br3co4smcc" path="res://Assets/Audio/beach-ambiance-16328.mp3" id="9_ikpnn"]
+[ext_resource type="Shader" uid="uid://b83yewvvb2cxk" path="res://Assets/Scripts/waveytext1.gdshader" id="9_qv81a"]
+
+[sub_resource type="Gradient" id="Gradient_iqepy"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h1wq0"]
+gradient = SubResource("Gradient_iqepy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dwrpx"]
+shader = ExtResource("2_ikpnn")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.09
+shader_parameter/Brightness = 3.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.8
+shader_parameter/Speed = 0.4
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 1.0
+
+[sub_resource type="Gradient" id="Gradient_g7jxm"]
+colors = PackedColorArray(0.757586, 2.02149e-05, 0.537392, 1, 1, 0.104447, 0.198593, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jspdm"]
+gradient = SubResource("Gradient_g7jxm")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lti8b"]
+size = Vector2(641.5, 109.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kk3ma"]
+shader = ExtResource("9_qv81a")
+shader_parameter/height = 3.0
+shader_parameter/frequency = 20.0
+shader_parameter/speed = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vd8hb"]
+size = Vector2(54, 33.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5upas"]
+size = Vector2(473, 26.5006)
+
+[sub_resource type="Animation" id="Animation_ikpnn"]
+resource_name = "Fade"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aq814"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_djw8h"]
+_data = {
+&"Fade": SubResource("Animation_ikpnn"),
+&"RESET": SubResource("Animation_aq814")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_aq814")
+
+[node name="MenuBG" type="TextureRect" parent="."]
+offset_left = -1.0
+offset_top = 5.0
+offset_right = 1159.0
+offset_bottom = 709.0
+texture = ExtResource("2_vd8hb")
+
+[node name="logo" type="Sprite2D" parent="."]
+position = Vector2(916, 580.125)
+scale = Vector2(7.20313, 1.80859)
+texture = SubResource("GradientTexture2D_h1wq0")
+
+[node name="shine" type="Sprite2D" parent="logo"]
+visible = false
+material = SubResource("ShaderMaterial_dwrpx")
+position = Vector2(0.230776, -0.289172)
+scale = Vector2(0.992788, 1.00406)
+texture = SubResource("GradientTexture2D_jspdm")
+
+[node name="death" type="Area2D" parent="."]
+
+[node name="death" type="StaticBody2D" parent="death"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death/death"]
+position = Vector2(288.25, 525.75)
+shape = SubResource("RectangleShape2D_lti8b")
+
+[node name="ColorRect" type="ColorRect" parent="death/death"]
+visible = false
+offset_top = 592.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0.33995, 0.615958, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death"]
+position = Vector2(142, 525)
+shape = SubResource("RectangleShape2D_lti8b")
+
+[node name="howto" type="Label" parent="."]
+offset_left = 26.0
+offset_top = 591.0
+offset_right = 586.0
+offset_bottom = 652.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_aq814")
+theme_override_font_sizes/font_size = 24
+text = "Use W, A and S or UP, LEFT and  RIGHT to navigate the menu... Jump into the boat to begin or walk away to exit."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="start" type="Label" parent="."]
+material = SubResource("ShaderMaterial_kk3ma")
+offset_left = 500.0
+offset_top = 175.0
+offset_right = 679.0
+offset_bottom = 294.0
+theme_override_colors/font_color = Color(6.49765e-07, 0.669091, 5.77569e-07, 1)
+theme_override_fonts/font = ExtResource("3_aq814")
+theme_override_font_sizes/font_size = 60
+text = "START
+|"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quit" type="Label" parent="."]
+material = SubResource("ShaderMaterial_kk3ma")
+offset_left = 901.0
+offset_top = 403.0
+offset_right = 1080.0
+offset_bottom = 486.0
+theme_override_colors/font_color = Color(1, 0.3241, 0.258944, 1)
+theme_override_fonts/font = ExtResource("3_aq814")
+theme_override_font_sizes/font_size = 60
+text = "QUIT -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(243, -32)
+script = ExtResource("4_djw8h")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(570, 407.5)
+scale = Vector2(1, 1.19531)
+texture = ExtResource("5_5upas")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+polygon = PackedVector2Array(536, 352, 546, 342, 560, 334, 575, 334, 586, 342, 597, 353, 600, 368, 592, 384, 600, 384, 608, 400, 608, 432, 608, 448, 608, 480, 544, 480, 544, 456, 528, 456, 528, 392, 544, 376, 536, 376, 536, 360)
+
+[node name="platform1" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="platform1"]
+polygon = PackedVector2Array(905, 474, 853, 458, 854, 501, 1162, 498, 1161, 474)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="platform1"]
+polygon = PackedVector2Array(853, 458, 761, 458, 730, 444, 670, 442, 550, 455, 550, 472, 855, 479)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="platform1"]
+polygon = PackedVector2Array(520, 472, 522, 315, 430, 320, 428, 469)
+
+[node name="playportal" type="Area2D" parent="."]
+position = Vector2(136, 456)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playportal"]
+position = Vector2(415, -4.25)
+shape = SubResource("RectangleShape2D_vd8hb")
+
+[node name="quitportal" type="Area2D" parent="."]
+position = Vector2(1018, 456)
+rotation = 1.57079
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="quitportal"]
+position = Vector2(-221.999, -133.001)
+shape = SubResource("RectangleShape2D_5upas")
+
+[node name="Boat" type="Sprite2D" parent="."]
+position = Vector2(556.75, 402.75)
+scale = Vector2(12.375, 14.15)
+texture = ExtResource("9_5upas")
+script = ExtResource("9_aq814")
+
+[node name="Beach-ambiance-16328" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ikpnn")
+autoplay = true
+bus = &"Sound effects"
+parameters/looping = true
+
+[node name="OverlayAnim" type="ColorRect" parent="."]
+visible = false
+offset_right = 1160.0
+offset_bottom = 707.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OverlayAnim"]
+libraries = {
+&"": SubResource("AnimationLibrary_djw8h")
+}
+
+[connection signal="body_shape_entered" from="death" to="CharacterBody2D" method="_on_death_body_shape_entered"]
+[connection signal="body_shape_entered" from="playportal" to="CharacterBody2D" method="_on_playportal_body_shape_entered"]
+[connection signal="body_shape_entered" from="quitportal" to="CharacterBody2D" method="_on_quitportal_body_shape_entered"]
+[connection signal="animation_finished" from="OverlayAnim/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpk0sunjadba"]
+
+[ext_resource type="Script" uid="uid://clw2mrafa21l6" path="res://Assets/Scripts/chapter_1_intro.gd" id="1_fmjym"]
+[ext_resource type="Texture2D" uid="uid://7e5ihpl4qyrx" path="res://Assets/Images/LevelBG's/forestIntroBG.png" id="2_vn5a2"]
+[ext_resource type="Texture2D" uid="uid://b4qexevwleibk" path="res://Assets/Images/MC.png" id="3_o8hwr"]
+[ext_resource type="Script" uid="uid://dpsieewulpsjw" path="res://Assets/Scripts/boat.gd" id="4_yn882"]
+[ext_resource type="Texture2D" uid="uid://dwvfep6aqwqa2" path="res://Assets/Images/boat.png" id="5_odmr5"]
+[ext_resource type="FontFile" uid="uid://55rtitk4pher" path="res://Assets/Fonts/Tiny5-Regular.ttf" id="6_qhewe"]
+[ext_resource type="AudioStream" uid="uid://sebksl7h2yra" path="res://Assets/Audio/ChapterStart.mp3.mp3" id="7_vn5a2"]
+
+[node name="Chapter1INTRO" type="Node2D"]
+script = ExtResource("1_fmjym")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_vn5a2")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(166, 442)
+scale = Vector2(0.945313, 1)
+texture = ExtResource("3_o8hwr")
+script = ExtResource("4_yn882")
+
+[node name="Boat" type="Sprite2D" parent="Player"]
+position = Vector2(-2.11566, 19.9999)
+scale = Vector2(12.2711, 13)
+texture = ExtResource("5_odmr5")
+flip_h = true
+
+[node name="Chapter 1" type="Label" parent="."]
+offset_left = 264.0
+offset_right = 883.0
+offset_bottom = 170.0
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("6_qhewe")
+theme_override_font_sizes/font_size = 150
+text = "Chapter 1"
+
+[node name="Subtitle" type="Label" parent="."]
+offset_left = 352.0
+offset_top = 170.0
+offset_right = 755.0
+offset_bottom = 250.0
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("6_qhewe")
+theme_override_font_sizes/font_size = 70
+text = "The Traversal"
+
+[node name="ChapterStart_mp3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_vn5a2")
+
+[connection signal="finished" from="ChapterStart_mp3" to="." method="_on_chapter_start_mp_3_finished"]

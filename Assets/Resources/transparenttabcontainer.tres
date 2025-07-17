@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://rqoxuii6qqnf"]
+
+[ext_resource type="FontFile" uid="uid://55rtitk4pher" path="res://Assets/Fonts/Tiny5-Regular.ttf" id="1_r2mdx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euu42"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[resource]
+TabContainer/colors/drop_mark_color = Color(1, 1, 1, 1)
+TabContainer/colors/font_outline_color = Color(0.482904, 0.00019055, 0.492395, 1)
+TabContainer/constants/outline_size = 8
+TabContainer/constants/side_margin = 0
+TabContainer/font_sizes/font_size = 16
+TabContainer/fonts/font = ExtResource("1_r2mdx")
+TabContainer/styles/panel = SubResource("StyleBoxFlat_euu42")

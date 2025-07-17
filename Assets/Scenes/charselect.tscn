@@ -1,0 +1,112 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc3boufar0fhg"]
+
+[ext_resource type="Script" uid="uid://bwavve7jwv2ll" path="res://Assets/Scripts/charselect.gd" id="1_vd48k"]
+[ext_resource type="Texture2D" uid="uid://cmcg5w5moj3qx" path="res://Assets/Images/notexture.jpg" id="2_3sea8"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vd48k")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.583921, 0.583947, 1)
+
+[node name="selectchar" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 480.0
+offset_right = 1129.0
+offset_bottom = 589.0
+theme_override_constants/separation = 20
+
+[node name="agility" type="Button" parent="selectchar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Astarlion"
+
+[node name="mana" type="Button" parent="selectchar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Master Feast"
+
+[node name="strength" type="Button" parent="selectchar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Simbiyote"
+
+[node name="soulimage1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 104.0
+offset_right = 379.0
+offset_bottom = 464.0
+texture = ExtResource("2_3sea8")
+
+[node name="soulimage2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 104.0
+offset_right = 754.0
+offset_bottom = 464.0
+texture = ExtResource("2_3sea8")
+
+[node name="soulimage3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 774.0
+offset_top = 104.0
+offset_right = 1128.0
+offset_bottom = 464.0
+texture = ExtResource("2_3sea8")
+
+[node name="viewchar" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 600.0
+offset_right = 1129.0
+offset_bottom = 640.0
+theme_override_constants/separation = 20
+
+[node name="viewagility" type="Button" parent="viewchar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Learn more about Agility"
+
+[node name="viewmana" type="Button" parent="viewchar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Learn more about Mana"
+
+[node name="viewstrength" type="Button" parent="viewchar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Learn more about Strength"
+
+[node name="pagetitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 1128.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 50
+text = "SELECT YOUR SPIRITUAL COMPANION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="selectchar/agility" to="." method="_on_char_1_pressed"]
+[connection signal="pressed" from="selectchar/mana" to="." method="_on_char_2_pressed"]
+[connection signal="pressed" from="selectchar/strength" to="." method="_on_char_3_pressed"]
+[connection signal="pressed" from="viewchar/viewagility" to="." method="_on_viewagility_pressed"]
+[connection signal="pressed" from="viewchar/viewmana" to="." method="_on_viewmana_pressed"]
+[connection signal="pressed" from="viewchar/viewstrength" to="." method="_on_viewstrength_pressed"]

@@ -1,0 +1,452 @@
+[gd_scene load_steps=27 format=3 uid="uid://buwbgh4xeudka"]
+
+[ext_resource type="Script" uid="uid://r45igd0fq22b" path="res://Assets/Scripts/battlecontroller.gd" id="1_ov64q"]
+[ext_resource type="Texture2D" uid="uid://dnhmx2ikfvqrl" path="res://Assets/Images/attackselecttabbg.png" id="2_ratpx"]
+[ext_resource type="Theme" uid="uid://rqoxuii6qqnf" path="res://Assets/Resources/transparenttabcontainer.tres" id="3_1njjt"]
+[ext_resource type="Script" uid="uid://cty8r8nfyumbg" path="res://Assets/Scripts/background.gd" id="3_msfli"]
+[ext_resource type="Texture2D" uid="uid://d1f0df80o5jle" path="res://Assets/Images/BasicAttack..png" id="4_2f7x4"]
+[ext_resource type="Texture2D" uid="uid://bq3gwu7qyf4rf" path="res://Assets/Images/BasicHeal.png" id="6_qwc62"]
+[ext_resource type="FontFile" uid="uid://55rtitk4pher" path="res://Assets/Fonts/Tiny5-Regular.ttf" id="7_qwc62"]
+[ext_resource type="Texture2D" uid="uid://b4qexevwleibk" path="res://Assets/Images/MC.png" id="7_vl1qy"]
+[ext_resource type="Texture2D" uid="uid://dghalpm08eyo0" path="res://Assets/Images/EnemyOutline.png" id="8_joa7u"]
+[ext_resource type="Script" uid="uid://b4rjivsdv68ic" path="res://Assets/Scripts/player_stats_display.gd" id="8_ssmpr"]
+[ext_resource type="Texture2D" uid="uid://ddpu6x66jvgv8" path="res://Assets/Images/EnemyOutline2.png" id="9_run5v"]
+[ext_resource type="Texture2D" uid="uid://dyd1mwj3rwlng" path="res://Assets/Images/EnemyOutline3.png" id="10_croke"]
+[ext_resource type="Texture2D" uid="uid://d1eb06mu8eqcp" path="res://Assets/Images/placeholderBE1.png" id="10_dss56"]
+[ext_resource type="AudioStream" uid="uid://cmairsngxngef" path="res://Assets/Audio/draw-sword-357574.mp3" id="11_msfli"]
+[ext_resource type="Texture2D" uid="uid://bce0g85yyc843" path="res://Assets/Images/cancelbutton.png" id="15_croke"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dss56"]
+load_path = "res://.godot/imported/SnoweyEye1.png-11a62f86e83758e537142264b2b88f2a.ctex"
+
+[sub_resource type="Gradient" id="Gradient_qwc62"]
+offsets = PackedFloat32Array(0.995671)
+colors = PackedColorArray(2.04556e-07, 0.201849, 0.134591, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vl1qy"]
+gradient = SubResource("Gradient_qwc62")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vl1qy"]
+bg_color = Color(0.509412, 1.2514e-06, 2.88785e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssmpr"]
+bg_color = Color(1.93245e-05, 0.55458, 0.10805, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1njjt"]
+bg_color = Color(0.370957, 0.00107034, 0.251943, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwc62"]
+bg_color = Color(0.495092, 0.226909, 0.951734, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dss56"]
+bg_color = Color(0.713726, 0.423529, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msfli"]
+bg_color = Color(0, 0.45098, 0.513726, 1)
+
+[sub_resource type="Gradient" id="Gradient_ssmpr"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.47451, 0, 0.811765, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dss56"]
+gradient = SubResource("Gradient_ssmpr")
+
+[node name="battlenode" type="Node2D"]
+script = ExtResource("1_ov64q")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(582, 320.5)
+scale = Vector2(14.881, 16.0222)
+texture = SubResource("CompressedTexture2D_dss56")
+script = ExtResource("3_msfli")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Background"]
+position = Vector2(-39.1103, -20.0035)
+scale = Vector2(0.0671998, 0.0624134)
+bus = &"Music"
+
+[node name="TabBG" type="TextureRect" parent="."]
+offset_top = 24.0
+offset_right = 237.0
+offset_bottom = 128.0
+texture = ExtResource("2_ratpx")
+expand_mode = 1
+stretch_mode = 1
+flip_v = true
+
+[node name="AttackOptions" type="TabContainer" parent="."]
+offset_right = 238.0
+offset_bottom = 131.0
+theme = ExtResource("3_1njjt")
+current_tab = 0
+
+[node name="Basic Attacks" type="GridContainer" parent="AttackOptions"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 6
+metadata/_tab_index = 0
+
+[node name="Attack1" type="TextureButton" parent="AttackOptions/Basic Attacks"]
+layout_mode = 2
+texture_normal = ExtResource("4_2f7x4")
+texture_pressed = ExtResource("4_2f7x4")
+texture_hover = ExtResource("4_2f7x4")
+texture_disabled = ExtResource("4_2f7x4")
+texture_focused = ExtResource("4_2f7x4")
+
+[node name="Spirtual Moves" type="GridContainer" parent="AttackOptions"]
+visible = false
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 6
+metadata/_tab_index = 1
+
+[node name="Heal1" type="TextureButton" parent="AttackOptions/Spirtual Moves"]
+layout_mode = 2
+texture_normal = ExtResource("6_qwc62")
+texture_pressed = ExtResource("6_qwc62")
+texture_hover = ExtResource("6_qwc62")
+texture_disabled = ExtResource("6_qwc62")
+texture_focused = ExtResource("6_qwc62")
+
+[node name="Enemies" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 536.0
+offset_top = 232.0
+offset_right = 1164.0
+offset_bottom = 607.0
+
+[node name="enemy1" type="Sprite2D" parent="Enemies"]
+position = Vector2(556, 208)
+scale = Vector2(0.677966, 0.644295)
+texture = ExtResource("10_dss56")
+
+[node name="enemybutton1" type="Button" parent="Enemies/enemy1"]
+offset_left = -88.0
+offset_top = -149.0
+offset_right = 89.0
+offset_bottom = 149.0
+
+[node name="Outline" type="TextureRect" parent="Enemies/enemy1/enemybutton1"]
+layout_mode = 0
+offset_left = -12.0
+offset_right = 177.0
+offset_bottom = 298.0
+mouse_filter = 2
+texture = ExtResource("8_joa7u")
+
+[node name="enemy2" type="Sprite2D" parent="Enemies"]
+position = Vector2(420, 208)
+scale = Vector2(0.677966, 0.644295)
+texture = ExtResource("10_dss56")
+
+[node name="enemybutton2" type="Button" parent="Enemies/enemy2"]
+offset_left = -88.4996
+offset_top = -150.0
+offset_right = 88.5004
+offset_bottom = 148.0
+
+[node name="Outline" type="TextureRect" parent="Enemies/enemy2/enemybutton2"]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 177.0
+offset_bottom = 299.0
+mouse_filter = 2
+texture = ExtResource("9_run5v")
+
+[node name="enemy3" type="Sprite2D" parent="Enemies"]
+position = Vector2(284.5, 208.32)
+scale = Vector2(0.672316, 0.642148)
+texture = ExtResource("10_dss56")
+
+[node name="enemybutton3" type="Button" parent="Enemies/enemy3"]
+offset_left = -88.4995
+offset_top = -150.0
+offset_right = 88.5005
+offset_bottom = 148.0
+
+[node name="Outline" type="TextureRect" parent="Enemies/enemy3/enemybutton3"]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 189.0
+offset_bottom = 299.0
+mouse_filter = 2
+texture = ExtResource("10_croke")
+
+[node name="PlayerPreview" type="TextureRect" parent="."]
+offset_left = -16.0
+offset_top = 408.0
+offset_right = 110.0
+offset_bottom = 538.0
+texture = ExtResource("7_vl1qy")
+expand_mode = 1
+
+[node name="PlayerStatsDisplay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 544.0
+offset_right = 224.0
+offset_bottom = 648.0
+script = ExtResource("8_ssmpr")
+
+[node name="EnemyStatsBG" type="TextureRect" parent="PlayerStatsDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_vl1qy")
+
+[node name="HPProgressBar" type="ProgressBar" parent="PlayerStatsDisplay"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = -40.0
+offset_right = 216.0
+offset_bottom = -8.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vl1qy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ssmpr")
+max_value = 10.0
+step = 1.0
+value = 5.0
+rounded = true
+show_percentage = false
+
+[node name="ManaProgressBar" type="ProgressBar" parent="PlayerStatsDisplay"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 8.0
+offset_right = 216.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1njjt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qwc62")
+max_value = 10.0
+step = 1.0
+value = 5.0
+rounded = true
+show_percentage = false
+
+[node name="StaminaProgressBar" type="ProgressBar" parent="PlayerStatsDisplay"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 55.0
+offset_right = 216.0
+offset_bottom = 87.0
+theme_override_styles/background = SubResource("StyleBoxFlat_dss56")
+theme_override_styles/fill = SubResource("StyleBoxFlat_msfli")
+max_value = 10.0
+step = 1.0
+value = 5.0
+rounded = true
+show_percentage = false
+
+[node name="ManaLabel" type="Label" parent="PlayerStatsDisplay"]
+layout_mode = 0
+offset_left = 72.0
+offset_right = 216.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("7_qwc62")
+theme_override_font_sizes/font_size = 40
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaminaLabel" type="Label" parent="PlayerStatsDisplay"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 47.0
+offset_right = 216.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("7_qwc62")
+theme_override_font_sizes/font_size = 40
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthLabel" type="Label" parent="PlayerStatsDisplay"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = -48.0
+offset_right = 216.0
+offset_bottom = -3.0
+theme_override_fonts/font = ExtResource("7_qwc62")
+theme_override_font_sizes/font_size = 40
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HP" type="Label" parent="PlayerStatsDisplay"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -40.0
+offset_right = 56.0
+offset_bottom = -5.0
+theme_override_fonts/font = ExtResource("7_qwc62")
+theme_override_font_sizes/font_size = 30
+text = "HP"
+
+[node name="MNA" type="Label" parent="PlayerStatsDisplay"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 68.0
+offset_bottom = 43.0
+theme_override_fonts/font = ExtResource("7_qwc62")
+theme_override_font_sizes/font_size = 30
+text = "MNA"
+
+[node name="STA" type="Label" parent="PlayerStatsDisplay"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 54.0
+offset_right = 68.0
+offset_bottom = 89.0
+theme_override_fonts/font = ExtResource("7_qwc62")
+theme_override_font_sizes/font_size = 30
+text = "STA"
+
+[node name="EnemyStatsDisplay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 928.0
+offset_top = 544.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="EnemyStatsBG" type="TextureRect" parent="EnemyStatsDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_dss56")
+
+[node name="Enemy1HP" type="ProgressBar" parent="EnemyStatsDisplay"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 72.0
+offset_right = 216.0
+offset_bottom = 104.0
+scale = Vector2(1, 0.88)
+theme_override_styles/background = SubResource("StyleBoxFlat_vl1qy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ssmpr")
+max_value = 10.0
+step = 1.0
+value = 5.0
+rounded = true
+show_percentage = false
+
+[node name="Enemy1HPLabel" type="Label" parent="EnemyStatsDisplay/Enemy1HP"]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 144.0
+offset_bottom = 37.0
+theme_override_fonts/font = ExtResource("7_qwc62")
+theme_override_font_sizes/font_size = 40
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemy2HP" type="ProgressBar" parent="EnemyStatsDisplay"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 40.0
+offset_right = 216.0
+offset_bottom = 72.0
+scale = Vector2(1, 0.88)
+theme_override_styles/background = SubResource("StyleBoxFlat_vl1qy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ssmpr")
+max_value = 10.0
+step = 1.0
+value = 5.0
+rounded = true
+show_percentage = false
+
+[node name="Enemy2HPLabel" type="Label" parent="EnemyStatsDisplay/Enemy2HP"]
+layout_mode = 0
+offset_top = -6.94443
+offset_right = 144.0
+offset_bottom = 38.0556
+theme_override_fonts/font = ExtResource("7_qwc62")
+theme_override_font_sizes/font_size = 40
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemy3HP" type="ProgressBar" parent="EnemyStatsDisplay"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 8.0
+offset_right = 216.0
+offset_bottom = 40.0
+scale = Vector2(1, 0.88)
+theme_override_styles/background = SubResource("StyleBoxFlat_vl1qy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ssmpr")
+max_value = 10.0
+step = 1.0
+value = 5.0
+rounded = true
+show_percentage = false
+
+[node name="Enemy3HPLabel" type="Label" parent="EnemyStatsDisplay/Enemy3HP"]
+layout_mode = 0
+offset_top = -12.5
+offset_right = 144.0
+offset_bottom = 44.5
+theme_override_fonts/font = ExtResource("7_qwc62")
+theme_override_font_sizes/font_size = 40
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemyidentifier" type="Label" parent="EnemyStatsDisplay"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 8.0
+offset_right = 71.0
+offset_bottom = 107.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("7_qwc62")
+theme_override_font_sizes/font_size = 24
+text = "Enemy 3
+Enemy 2
+Enemy 1"
+
+[node name="BattleStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_msfli")
+autoplay = true
+bus = &"Sound effects"
+
+[node name="DisablePlayerOptions" type="ColorRect" parent="."]
+visible = false
+offset_right = 240.0
+offset_bottom = 128.0
+color = Color(0.980392, 0, 0, 0.494118)
+
+[node name="Cancel" type="TextureButton" parent="."]
+visible = false
+offset_left = 248.0
+offset_top = 48.0
+offset_right = 360.0
+offset_bottom = 88.0
+texture_normal = ExtResource("15_croke")
+texture_pressed = ExtResource("15_croke")
+texture_hover = ExtResource("15_croke")
+texture_disabled = ExtResource("15_croke")
+texture_focused = ExtResource("15_croke")
+stretch_mode = 0
+
+[connection signal="finished" from="Background/AudioStreamPlayer2D" to="Background" method="_on_audio_stream_player_2d_finished"]
+[connection signal="tab_changed" from="AttackOptions" to="." method="_on_tab_container_tab_changed"]
+[connection signal="pressed" from="AttackOptions/Basic Attacks/Attack1" to="." method="_on_attack_1_pressed"]
+[connection signal="pressed" from="Enemies/enemy1/enemybutton1" to="." method="_on_enemybutton_1_pressed"]
+[connection signal="pressed" from="Enemies/enemy2/enemybutton2" to="." method="_on_enemybutton_2_pressed"]
+[connection signal="pressed" from="Enemies/enemy3/enemybutton3" to="." method="_on_enemybutton_3_pressed"]
+[connection signal="pressed" from="Cancel" to="." method="_on_cancel_pressed"]

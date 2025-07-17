@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqqn38ec215bn"]
+
+[ext_resource type="Script" uid="uid://c6cbqbkcd24uy" path="res://Assets/Scripts/learnmoresprit.gd" id="1_1wpq4"]
+[ext_resource type="FontFile" uid="uid://55rtitk4pher" path="res://Assets/Fonts/Tiny5-Regular.ttf" id="2_dp1pw"]
+[ext_resource type="Texture2D" uid="uid://cmcg5w5moj3qx" path="res://Assets/Images/notexture.jpg" id="2_xcgi6"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1wpq4")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.204911, 0.199288, 0.207642, 1)
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 664.0
+offset_top = 40.0
+offset_right = 1120.0
+offset_bottom = 177.0
+theme_override_fonts/font = ExtResource("2_dp1pw")
+theme_override_font_sizes/font_size = 70
+text = "Simbiyote"
+horizontal_alignment = 1
+
+[node name="mainblurb" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 145.0
+offset_right = 656.0
+offset_bottom = 606.0
+theme_override_fonts/font = ExtResource("2_dp1pw")
+theme_override_font_sizes/font_size = 34
+text = "A \"cuddly little\" ant who LOVES hugs and would love to taste you.
+He is suitable for players that dabble into close up hard hitting blows at the expense of a lower speed.
+
+Stats:
+Mana = 10
+Agility = 2
+Strength = 2"
+autowrap_mode = 2
+
+[node name="Spiritimage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 152.0
+offset_right = 1120.0
+offset_bottom = 616.0
+texture = ExtResource("2_xcgi6")
+
+[node name="backbutton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 80
+text = "<"
+
+[connection signal="pressed" from="backbutton" to="." method="_on_backbutton_pressed"]
