@@ -18,8 +18,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	
-	for body in $playercollider.get_overlapping_bodies():
-		print("colliding with ", body.name)
 		
 
 

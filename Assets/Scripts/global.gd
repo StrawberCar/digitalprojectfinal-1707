@@ -9,6 +9,9 @@ var maxhealth = 10
 var health = 10
 var currentmana = 20
 var classchosen = 0
+var unlockedweapons = {1: true, 2: false}
+var unlockedmana = {1: true, 2: false}
+
 # Bools for other stuff
 
 var spinmenuportals = false

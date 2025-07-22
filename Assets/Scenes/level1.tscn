@@ -120,7 +120,7 @@ shape = SubResource("RectangleShape2D_7ynsk")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="BasicEnemy1" parent="." instance=ExtResource("3_4gpfn")]
-position = Vector2(371, 365)
+position = Vector2(364, 451)
 metadata/Enemytype = "Basicenemy1"
 metadata/Enemytier = 1
 

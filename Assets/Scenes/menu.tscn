@@ -180,7 +180,7 @@ scale = Vector2(1, 1.19531)
 texture = ExtResource("5_5upas")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
-polygon = PackedVector2Array(536, 352, 546, 342, 560, 334, 575, 334, 586, 342, 597, 353, 600, 368, 592, 384, 600, 384, 608, 400, 608, 432, 608, 448, 608, 480, 544, 480, 544, 456, 528, 456, 528, 392, 544, 376, 536, 376, 536, 360)
+polygon = PackedVector2Array(536, 352, 546, 342, 560, 334, 575, 334, 586, 342, 597, 353, 600, 368, 592, 384, 600, 384, 608, 400, 608, 420, 608, 448, 608, 480, 544, 480, 544, 456, 528, 456, 528, 392, 544, 376, 536, 376, 536, 360)
 
 [node name="platform1" type="StaticBody2D" parent="."]
 
