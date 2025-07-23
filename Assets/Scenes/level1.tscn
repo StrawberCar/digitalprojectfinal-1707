@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bvd8y4xvww4ib"]
+[gd_scene load_steps=23 format=3 uid="uid://bvd8y4xvww4ib"]
 
 [ext_resource type="Script" uid="uid://3eyrccb5n7rj" path="res://Assets/Scripts/playerinlevel.gd" id="1_arc0y"]
 [ext_resource type="Texture2D" uid="uid://7e5ihpl4qyrx" path="res://Assets/Images/LevelBG's/forestIntroBG.png" id="1_t7rln"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b3ktd4ddnh0sa" path="res://Assets/Blueprints/basicenemy1.tscn" id="3_4gpfn"]
 [ext_resource type="Script" uid="uid://dpsieewulpsjw" path="res://Assets/Scripts/boat.gd" id="3_dc3h5"]
 [ext_resource type="Texture2D" uid="uid://b7apvbjbagdlu" path="res://Assets/Images/forestfloorstart.png" id="4_6l2cf"]
+[ext_resource type="Texture2D" uid="uid://cs8yn45nj4nya" path="res://Assets/Images/SpeechBubble/E/speechbubble1.png" id="6_a1kqk"]
+[ext_resource type="Script" uid="uid://duwhlalfabkfx" path="res://Assets/Scenes/npc.gd" id="6_l4bgp"]
+[ext_resource type="Script" uid="uid://dik05023vaum8" path="res://Assets/Scenes/press_e.gd" id="7_l4bgp"]
 [ext_resource type="Script" uid="uid://bnfxrsa00lwx0" path="res://Assets/Scenes/playerdialougemanager.gd" id="8_5248m"]
 [ext_resource type="AudioStream" uid="uid://d33br3co4smcc" path="res://Assets/Audio/beach-ambiance-16328.mp3" id="9_dc3h5"]
 
@@ -53,8 +56,8 @@ offset_bottom = 40.0
 [node name="Sky" type="Sprite2D" parent="Skies"]
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(2004.25, 464)
-scale = Vector2(25.7207, 1064.25)
+position = Vector2(2036.25, 464)
+scale = Vector2(25.4707, 1064.25)
 texture = SubResource("GradientTexture1D_4gpfn")
 
 [node name="ForestIntroBg" type="Sprite2D" parent="Skies"]
@@ -110,6 +113,7 @@ position = Vector2(-304, 288)
 shape = SubResource("RectangleShape2D_d3pib")
 
 [node name="NPC1" type="Area2D" parent="."]
+script = ExtResource("6_l4bgp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC1"]
 position = Vector2(232, 552)
@@ -119,6 +123,13 @@ shape = SubResource("RectangleShape2D_dc3h5")
 position = Vector2(232, 576)
 scale = Vector2(0.1875, 48)
 texture = SubResource("GradientTexture1D_ymcw7")
+
+[node name="PressE" type="Sprite2D" parent="NPC1"]
+visible = false
+position = Vector2(208, 504)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("6_a1kqk")
+script = ExtResource("7_l4bgp")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(-744, 136)
@@ -156,6 +167,8 @@ autoplay = true
 max_distance = 700.0
 attenuation = 0.366022
 
+[connection signal="area_entered" from="NPC1" to="NPC1" method="_on_area_entered"]
+[connection signal="body_exited" from="NPC1" to="NPC1" method="_on_body_exited"]
 [connection signal="area_entered" from="Player/playercollider" to="Player/playercollider" method="_on_area_entered"]
 [connection signal="area_exited" from="Player/playercollider" to="Player/playercollider" method="_on_area_exited"]
 [connection signal="body_entered" from="Player/playercollider" to="Player" method="_on_playercollider_body_entered"]

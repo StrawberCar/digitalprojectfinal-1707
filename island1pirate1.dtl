@@ -1,5 +1,5 @@
 [background arg="res://Assets/Images/LevelBG's/forest/forest1.png" fade="0.0"]
-join IslandGreeter (Normal) right [length="5.0" wait="true"]
+join IslandGreeter (Normal) right [animation="Fade In" length="0.2"]
 IslandGreeter (Normal): Hello!
 IslandGreeter (Normal): Sorry if I startled you.
 IslandGreeter (Normal): It's just been a while since someone new has showed up.
