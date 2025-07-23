@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://Assets/Scripts/global.gd"
 Enemies="*res://Assets/Scripts/EnemyData.gd"
+Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 
@@ -26,6 +27,7 @@ directories/dch_directory={
 "Intro1": "res://Intro1.dch"
 }
 directories/dtl_directory={
+"island1pirate1": "res://island1pirate1.dtl",
 "test": "res://test.dtl"
 }
 extensions_folder="res://addons/dialogic_additions"
@@ -48,12 +50,19 @@ choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
+variables={}
+layout/style_list=[]
+layout/default_style="Default"
 
 [display]
 
 window/size/mode=2
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://ctqmw7y6jesdw"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
 [global_group]
 
