@@ -37,11 +37,17 @@ var maxplayerstaminabar = Global.playerspeed
 var _playerStrength = Global.playerstrength
 var isPlayerAttacking = true
 var totalDamage
+var shownAttacks
+var shownMana
 
 func _playerSetup() -> void:
 	staminaRemaining = maxplayerstaminabar
 	playerstaminabar.max_value = maxplayerstaminabar
 	playerstaminabarlabel.text = str(staminaRemaining)
+	var attackNum = $"AttackOptions/Basic Attacks".get_child_count()
+	var manaNum = $"AttackOptions/Spirtual Moves".get_child_count()
+	print(manaNum, " ", attackNum)
+
 
 
 
