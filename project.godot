@@ -25,7 +25,7 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 directories/dch_directory={
 "Intro1": "res://Intro1.dch",
-"IslandGreeter": "res://Assets/Images/LevelBG's/forest/IslandGreeter.dch"
+"IslandGreeter": "res://IslandGreeter.dch"
 }
 directories/dtl_directory={
 "island1pirate1": "res://island1pirate1.dtl",
