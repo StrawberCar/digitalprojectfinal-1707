@@ -1,19 +1,22 @@
 [background arg="res://Assets/Images/LevelBG's/forest/forest1.png" fade="0.0"]
-join IslandGreeter right [length="5.0" wait="true"]
+join IslandGreeter (Normal) right [length="5.0" wait="true"]
 IslandGreeter (Normal): Hello!
 IslandGreeter (Normal): Sorry if I startled you.
 IslandGreeter (Normal): It's just been a while since someone new has showed up.
 IslandGreeter (Normal): It's nice to have someone finally arrive!
-IslandGreeter: I'm (placeholdername)!
-IslandGreeter: Nice to meet you!
+IslandGreeter (Normal): I'm (placeholdername)!
+IslandGreeter (Normal): Nice to meet you!
 IslandGreeter (Normal): What brings you here?
 - I'm on a journey..
-	IslandGreeter: Oh?
-	IslandGreeter: That sounds cool!
+	IslandGreeter (Normal): Oh?
 	
-	IslandGreeter: Though I do wonder what on this island is intresting enough to encourage someone to come here...
-	IslandGreeter: Whatever it may be...
-	IslandGreeter: Good luck!
+	IslandGreeter (Normal): That sounds cool!
+	
+	
+	IslandGreeter (Normal): Though I do wonder what on this island is intresting enough to encourage someone to come here...
+	
+	IslandGreeter (Normal): Whatever it may be...
+	IslandGreeter (Normal): Good luck!
 - I dont exactly know..
 	IslandGreeter: Oh, Well...
 	IslandGreeter: There are plenty of fun things to do on this island.
