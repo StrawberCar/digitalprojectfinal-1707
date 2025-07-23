@@ -1,1 +1,18 @@
-Intro1: Hello world!
+[background arg="res://Assets/Images/LevelBG's/forest/forest1.png" fade="0.0"]
+join IslandGreeter right [length="5.0" wait="true"]
+IslandGreeter (Normal): Hello.
+IslandGreeter (Normal): Sorry to startle you.
+IslandGreeter (Normal): Being stuck on this island isn't very fun.
+IslandGreeter (Normal): Its nice to finally see someone again.
+IslandGreeter (Normal): What brings you here?
+- I'm on a journey..
+	IslandGreeter: Oh cool, It isnt really my job to ask what it is.
+	IslandGreeter: But it doesn't concern me either. By the way
+- I dont exactly know..
+	IslandGreeter: Oh, Well...
+	IslandGreeter: There are plenty of fun things to do on this island.
+	IslandGreeter: Just gotta take a look around, y'know.
+	IslandGreeter: By the way...
+IslandGreeter: Please, do watch out for the cats around here, they are rather "bitey"
+IslandGreeter: Well I 
+[end_timeline]

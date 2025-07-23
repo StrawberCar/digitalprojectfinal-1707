@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvd8y4xvww4ib"]
+[gd_scene load_steps=20 format=3 uid="uid://bvd8y4xvww4ib"]
 
 [ext_resource type="Script" uid="uid://3eyrccb5n7rj" path="res://Assets/Scripts/playerinlevel.gd" id="1_arc0y"]
 [ext_resource type="Texture2D" uid="uid://7e5ihpl4qyrx" path="res://Assets/Images/LevelBG's/forestIntroBG.png" id="1_t7rln"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b3ktd4ddnh0sa" path="res://Assets/Blueprints/basicenemy1.tscn" id="3_4gpfn"]
 [ext_resource type="Script" uid="uid://dpsieewulpsjw" path="res://Assets/Scripts/boat.gd" id="3_dc3h5"]
 [ext_resource type="Texture2D" uid="uid://b7apvbjbagdlu" path="res://Assets/Images/forestfloorstart.png" id="4_6l2cf"]
+[ext_resource type="Script" uid="uid://bnfxrsa00lwx0" path="res://Assets/Scenes/playerdialougemanager.gd" id="8_5248m"]
 [ext_resource type="AudioStream" uid="uid://d33br3co4smcc" path="res://Assets/Audio/beach-ambiance-16328.mp3" id="9_dc3h5"]
 
 [sub_resource type="Gradient" id="Gradient_e2hj7"]
@@ -29,6 +30,16 @@ size = Vector2(56, 111)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ynsk"]
 size = Vector2(64, 115)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dc3h5"]
+size = Vector2(128, 96)
+
+[sub_resource type="Gradient" id="Gradient_5248m"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ymcw7"]
+gradient = SubResource("Gradient_5248m")
+
 [node name="debuglevel" type="Node2D" groups=["ForestLevel"]]
 texture_filter = 1
 texture_repeat = 1
@@ -40,6 +51,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Sky" type="Sprite2D" parent="Skies"]
+texture_filter = 1
+texture_repeat = 1
 position = Vector2(1984.5, 276.125)
 scale = Vector2(24.5039, 1064.25)
 texture = SubResource("GradientTexture1D_4gpfn")
@@ -97,7 +110,7 @@ position = Vector2(-304, 288)
 shape = SubResource("RectangleShape2D_d3pib")
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(-512, 112)
+position = Vector2(-744, 136)
 script = ExtResource("1_arc0y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -113,6 +126,7 @@ texture = ExtResource("2_e2hj7")
 position = Vector2(576, 215)
 
 [node name="playercollider" type="Area2D" parent="Player"]
+script = ExtResource("8_5248m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/playercollider"]
 position = Vector2(563, 407.5)
@@ -120,7 +134,7 @@ shape = SubResource("RectangleShape2D_7ynsk")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="BasicEnemy1" parent="." instance=ExtResource("3_4gpfn")]
-position = Vector2(364, 451)
+position = Vector2(656, 568)
 metadata/Enemytype = "Basicenemy1"
 metadata/Enemytier = 1
 
@@ -131,4 +145,17 @@ autoplay = true
 max_distance = 700.0
 attenuation = 0.366022
 
+[node name="IslandGreeting" type="Area2D" parent="."]
+position = Vector2(32, 576)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IslandGreeting"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_dc3h5")
+
+[node name="Sprite2D" type="Sprite2D" parent="IslandGreeting"]
+position = Vector2(9.53674e-07, 6.55651e-07)
+scale = Vector2(0.1875, 48)
+texture = SubResource("GradientTexture1D_ymcw7")
+
 [connection signal="body_entered" from="Player/playercollider" to="Player" method="_on_playercollider_body_entered"]
+[connection signal="body_entered" from="Player/playercollider" to="Player/playercollider" method="_on_body_entered"]
