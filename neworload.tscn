@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfplsu8qqlivp"]
+
+[ext_resource type="Script" uid="uid://c2bjst86twl8t" path="res://neworload.gd" id="1_k5m73"]
+[ext_resource type="Script" uid="uid://dg4jb2fhl8gbi" path="res://addons/game_state_saver/game_state_helper.gd" id="2_k5m73"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k5m73")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.599063, 0, 0.181632, 1)
+metadata/_edit_lock_ = true
+
+[node name="New" type="Button" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 280.0
+offset_right = 500.0
+offset_bottom = 416.0
+theme_override_font_sizes/font_size = 50
+text = "New Game"
+
+[node name="Load" type="Button" parent="."]
+layout_mode = 0
+offset_left = 656.0
+offset_top = 280.0
+offset_right = 1092.0
+offset_bottom = 416.0
+theme_override_font_sizes/font_size = 50
+text = "Load Game"
+
+[node name="GameStateHelper" type="Node" parent="."]
+script = ExtResource("2_k5m73")
+metadata/_custom_type_script = "uid://dg4jb2fhl8gbi"
+
+[connection signal="pressed" from="New" to="." method="_on_new_pressed"]
+[connection signal="pressed" from="Load" to="." method="_on_load_pressed"]
