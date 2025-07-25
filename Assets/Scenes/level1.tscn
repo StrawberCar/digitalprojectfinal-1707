@@ -1,7 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://bvd8y4xvww4ib"]
 
 [ext_resource type="Script" uid="uid://3eyrccb5n7rj" path="res://Assets/Scripts/playerinlevel.gd" id="1_arc0y"]
-[ext_resource type="Script" uid="uid://byv0c3p1f6hoi" path="res://Assets/Scenes/checkpoint.gd" id="1_lxq30"]
 [ext_resource type="Texture2D" uid="uid://7e5ihpl4qyrx" path="res://Assets/Images/LevelBG's/forestIntroBG.png" id="1_t7rln"]
 [ext_resource type="Texture2D" uid="uid://dwvfep6aqwqa2" path="res://Assets/Images/boat.png" id="2_6l2cf"]
 [ext_resource type="Texture2D" uid="uid://cea1qrlqkfnig" path="res://Assets/Images/forestfloor.png" id="2_8p6u1"]
@@ -14,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dik05023vaum8" path="res://Assets/Scenes/press_e.gd" id="7_l4bgp"]
 [ext_resource type="Script" uid="uid://bnfxrsa00lwx0" path="res://Assets/Scenes/playerdialougemanager.gd" id="8_5248m"]
 [ext_resource type="AudioStream" uid="uid://d33br3co4smcc" path="res://Assets/Audio/beach-ambiance-16328.mp3" id="9_dc3h5"]
+[ext_resource type="Script" uid="uid://dg4jb2fhl8gbi" path="res://addons/game_state_saver/game_state_helper.gd" id="15_u7k4p"]
 
 [sub_resource type="Gradient" id="Gradient_e2hj7"]
 offsets = PackedFloat32Array(0)
@@ -57,7 +57,6 @@ gradient = SubResource("Gradient_de01o")
 [node name="debuglevel" type="Node2D" groups=["ForestLevel"]]
 texture_filter = 1
 texture_repeat = 1
-script = ExtResource("1_lxq30")
 
 [node name="Skies" type="Control" parent="."]
 layout_mode = 3
@@ -190,6 +189,10 @@ shape = SubResource("RectangleShape2D_l4bgp")
 position = Vector2(512, 280.5)
 scale = Vector2(1, 10.8906)
 texture = SubResource("GradientTexture2D_u7k4p")
+
+[node name="GameStateHelper" type="Node" parent="."]
+script = ExtResource("15_u7k4p")
+metadata/_custom_type_script = "uid://dg4jb2fhl8gbi"
 
 [connection signal="area_entered" from="NPC1" to="NPC1" method="_on_area_entered"]
 [connection signal="body_exited" from="NPC1" to="NPC1" method="_on_body_exited"]
