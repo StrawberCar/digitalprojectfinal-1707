@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c6cbqbkcd24uy" path="res://Assets/Scripts/learnmoresprit.gd" id="1_1wpq4"]
 [ext_resource type="FontFile" uid="uid://55rtitk4pher" path="res://Assets/Fonts/Tiny5-Regular.ttf" id="2_dp1pw"]
-[ext_resource type="Texture2D" uid="uid://cmcg5w5moj3qx" path="res://Assets/Images/notexture.jpg" id="2_xcgi6"]
+[ext_resource type="Texture2D" uid="uid://cl8oarnahrbox" path="res://Assets/Images/simbyote.png" id="3_dp1pw"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -56,7 +56,7 @@ offset_left = 680.0
 offset_top = 152.0
 offset_right = 1120.0
 offset_bottom = 616.0
-texture = ExtResource("2_xcgi6")
+texture = ExtResource("3_dp1pw")
 
 [node name="backbutton" type="Button" parent="."]
 layout_mode = 0

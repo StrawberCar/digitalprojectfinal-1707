@@ -5,14 +5,16 @@ extends Control
 var typing_speed := 0.05
 
 func _ready() -> void:
-	awaitstart()
+
 	if Global.classchosen == 1:
 		$Spirit.texture = load("res://Assets/Images/Astarlion.png")
 	elif Global.classchosen == 2:
 		$Spirit.texture = load("res://Assets/Images/MasterFeast-1.png.png")
 	elif Global.classchosen == 3:
 		$Spirit.texture = load("res://Assets/Images/simbyote.png")
-
+	pause()
+	await get_tree().create_timer(3).timeout
+	$SpiritCover/AnimationPlayer.play("slidedown")
 
 func write(text: String, append: bool = false) -> void:
 	await _write_text(text, append)
@@ -30,18 +32,20 @@ func writestats():
 	write("Speed: " + str(Global.playerspeed) + "\nMana: " + str(Global.playermana) + "\nStrength: " + str(Global.playerstrength))
 
 func pause():
+	$VideoStreamPlayer.play()
 	await get_tree().create_timer(5).timeout
 	$VideoStreamPlayer.paused = true
 	writestats()
 
 
 
-func awaitstart():
-	if Global.save == true:
-		show()
-	else:
-		hide()
+#func awaitstart():
+	#if Global.save == true:
+		#show()
+	#else:
+		#hide()
 
 
 func _on_save_pressed() -> void:
-	Global.save = false
+	SaveManager.data.Level = Global.level
+	SaveManager.save_data()

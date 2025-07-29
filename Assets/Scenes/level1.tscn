@@ -120,6 +120,7 @@ position = Vector2(-304, 325.25)
 shape = SubResource("RectangleShape2D_d3pib")
 
 [node name="NPC1" type="Area2D" parent="."]
+position = Vector2(64, 2)
 script = ExtResource("6_l4bgp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC1"]
@@ -140,6 +141,7 @@ texture = ExtResource("6_a1kqk")
 script = ExtResource("7_l4bgp")
 
 [node name="Checkpoint1" type="Area2D" parent="."]
+position = Vector2(-112, 0)
 script = ExtResource("9_lxq30")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint1"]
@@ -147,7 +149,7 @@ position = Vector2(576, 560)
 shape = SubResource("RectangleShape2D_l4bgp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Checkpoint1"]
-position = Vector2(576, 560)
+position = Vector2(576, 552)
 texture = ExtResource("10_tn6bt")
 
 [node name="PressE" type="Sprite2D" parent="Checkpoint1"]
@@ -189,7 +191,7 @@ shape = SubResource("RectangleShape2D_7ynsk")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="BasicEnemy1" parent="." instance=ExtResource("3_4gpfn")]
-position = Vector2(896, 568)
+position = Vector2(568, 568)
 metadata/Enemytype = "Basicenemy1"
 metadata/Enemytier = 1
 

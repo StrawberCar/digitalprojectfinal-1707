@@ -21,6 +21,7 @@ Global="*res://Assets/Scripts/global.gd"
 Enemies="*res://Assets/Scripts/EnemyData.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 GameStateService="*res://addons/game_state_saver/game_state_service.gd"
+SaveManager="*res://addons/save_and_load/save_manager.gd"
 
 [dialogic]
 
