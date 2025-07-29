@@ -8,9 +8,11 @@ var playermana = 20
 var maxhealth = 10
 var health = 10
 var currentmana = 20
-var classchosen = 0
+var classchosen = 1
 var unlockedweapons = {1: true, 2: false}
 var unlockedmana = {1: true, 2: false}
+var playerpos = Vector2(0,0)
+var level = "res://Assets/Scenes/level1.tscn"
 
 # Bools for other stuff
 
@@ -28,3 +30,5 @@ enum tier1enemies{Basicenemy1, Basicenemy2, Basicenemy3}
 # Detailing variables
 
 var leveltype
+
+var save

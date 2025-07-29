@@ -1,0 +1,138 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1twv18xjoqxv"]
+
+[ext_resource type="Shader" uid="uid://b83yewvvb2cxk" path="res://Assets/Scripts/waveytext1.gdshader" id="1_hjq3a"]
+[ext_resource type="Script" uid="uid://cvsq6ydutfoqo" path="res://save.gd" id="1_w8f4x"]
+[ext_resource type="FontFile" uid="uid://55rtitk4pher" path="res://Assets/Fonts/Tiny5-Regular.ttf" id="2_w8f4x"]
+[ext_resource type="VideoStream" uid="uid://c0ts2f8aqgxuy" path="res://Assets/Images/ColoredGrowth.ogv" id="3_hcujw"]
+[ext_resource type="Texture2D" uid="uid://cl8oarnahrbox" path="res://Assets/Images/simbyote.png" id="5_hcujw"]
+
+[sub_resource type="Animation" id="Animation_hcujw"]
+resource_name = "slidedown"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.93333),
+"transitions": PackedFloat32Array(-2.82843, -2.82843),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m1enn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b20gq"]
+_data = {
+&"RESET": SubResource("Animation_m1enn"),
+&"slidedown": SubResource("Animation_hcujw")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m1enn"]
+shader = ExtResource("1_hjq3a")
+shader_parameter/height = 4.0
+shader_parameter/frequency = 20.0
+shader_parameter/speed = 5.0
+
+[node name="Save" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w8f4x")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.277778
+anchor_top = -0.444444
+anchor_right = -0.277778
+anchor_bottom = -0.444444
+offset_right = 1808.0
+offset_bottom = 1168.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Spirit" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 24.0
+offset_right = 1080.0
+offset_bottom = 408.0
+texture = ExtResource("5_hcujw")
+expand_mode = 1
+
+[node name="SpiritCover" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 680.0
+offset_top = -40.0
+offset_right = 1128.0
+offset_bottom = 448.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpiritCover"]
+libraries = {
+&"": SubResource("AnimationLibrary_b20gq")
+}
+
+[node name="Header" type="Label" parent="."]
+material = SubResource("ShaderMaterial_m1enn")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 569.0
+offset_bottom = 176.0
+theme_override_fonts/font = ExtResource("2_w8f4x")
+theme_override_font_sizes/font_size = 100
+text = "Save Data..."
+horizontal_alignment = 1
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_left = -352.0
+offset_top = 176.0
+offset_right = 536.0
+offset_bottom = 648.0
+stream = ExtResource("3_hcujw")
+expand = true
+metadata/_edit_lock_ = true
+
+[node name="Stats" type="Label" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 256.0
+offset_right = 624.0
+offset_bottom = 577.0
+theme_override_constants/line_spacing = 75
+theme_override_fonts/font = ExtResource("2_w8f4x")
+theme_override_font_sizes/font_size = 50
+
+[node name="Save" type="Button" parent="."]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 472.0
+offset_right = 1088.0
+offset_bottom = 616.0
+theme_override_fonts/font = ExtResource("2_w8f4x")
+theme_override_font_sizes/font_size = 70
+text = "SAVE"
+
+[connection signal="pressed" from="Save" to="." method="_on_save_pressed"]

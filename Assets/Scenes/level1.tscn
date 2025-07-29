@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bvd8y4xvww4ib"]
+[gd_scene load_steps=28 format=3 uid="uid://bvd8y4xvww4ib"]
 
 [ext_resource type="Script" uid="uid://3eyrccb5n7rj" path="res://Assets/Scripts/playerinlevel.gd" id="1_arc0y"]
 [ext_resource type="Texture2D" uid="uid://7e5ihpl4qyrx" path="res://Assets/Images/LevelBG's/forestIntroBG.png" id="1_t7rln"]
@@ -13,7 +13,10 @@
 [ext_resource type="Script" uid="uid://dik05023vaum8" path="res://Assets/Scenes/press_e.gd" id="7_l4bgp"]
 [ext_resource type="Script" uid="uid://bnfxrsa00lwx0" path="res://Assets/Scenes/playerdialougemanager.gd" id="8_5248m"]
 [ext_resource type="AudioStream" uid="uid://d33br3co4smcc" path="res://Assets/Audio/beach-ambiance-16328.mp3" id="9_dc3h5"]
+[ext_resource type="Script" uid="uid://uj8dtq8r7inr" path="res://Assets/Scenes/checkpoint.gd" id="9_lxq30"]
+[ext_resource type="Texture2D" uid="uid://d3qg868tubxif" path="res://Assets/Images/savestar.png" id="10_tn6bt"]
 [ext_resource type="Script" uid="uid://dg4jb2fhl8gbi" path="res://addons/game_state_saver/game_state_helper.gd" id="15_u7k4p"]
+[ext_resource type="PackedScene" uid="uid://d1twv18xjoqxv" path="res://save.tscn" id="17_tn6bt"]
 
 [sub_resource type="Gradient" id="Gradient_e2hj7"]
 offsets = PackedFloat32Array(0)
@@ -38,21 +41,14 @@ colors = PackedColorArray(0, 1, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ymcw7"]
 gradient = SubResource("Gradient_5248m")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4bgp"]
+size = Vector2(80, 89)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fceyy"]
 size = Vector2(56, 111)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ynsk"]
 size = Vector2(64, 115)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4bgp"]
-size = Vector2(90, 562)
-
-[sub_resource type="Gradient" id="Gradient_de01o"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_u7k4p"]
-gradient = SubResource("Gradient_de01o")
 
 [node name="debuglevel" type="Node2D" groups=["ForestLevel"]]
 texture_filter = 1
@@ -137,7 +133,27 @@ texture = SubResource("GradientTexture1D_ymcw7")
 
 [node name="PressE" type="Sprite2D" parent="NPC1"]
 visible = false
+z_index = 1000
 position = Vector2(208, 504)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("6_a1kqk")
+script = ExtResource("7_l4bgp")
+
+[node name="Checkpoint1" type="Area2D" parent="."]
+script = ExtResource("9_lxq30")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint1"]
+position = Vector2(576, 560)
+shape = SubResource("RectangleShape2D_l4bgp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoint1"]
+position = Vector2(576, 560)
+texture = ExtResource("10_tn6bt")
+
+[node name="PressE" type="Sprite2D" parent="Checkpoint1"]
+visible = false
+z_index = 1000
+position = Vector2(568, 504)
 scale = Vector2(1.7, 1.7)
 texture = ExtResource("6_a1kqk")
 script = ExtResource("7_l4bgp")
@@ -145,6 +161,12 @@ script = ExtResource("7_l4bgp")
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(-744, 136)
 script = ExtResource("1_arc0y")
+
+[node name="Save" parent="Player" instance=ExtResource("17_tn6bt")]
+visible = false
+z_index = 4096
+offset_top = -128.0
+offset_bottom = -128.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(564, 407.5)
@@ -167,8 +189,7 @@ shape = SubResource("RectangleShape2D_7ynsk")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="BasicEnemy1" parent="." instance=ExtResource("3_4gpfn")]
-visible = false
-position = Vector2(656, 568)
+position = Vector2(896, 568)
 metadata/Enemytype = "Basicenemy1"
 metadata/Enemytier = 1
 
@@ -179,25 +200,15 @@ autoplay = true
 max_distance = 700.0
 attenuation = 0.366022
 
-[node name="Checkpoint1" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint1"]
-position = Vector2(512, 320)
-shape = SubResource("RectangleShape2D_l4bgp")
-
-[node name="Sprite2D" type="Sprite2D" parent="Checkpoint1"]
-position = Vector2(512, 280.5)
-scale = Vector2(1, 10.8906)
-texture = SubResource("GradientTexture2D_u7k4p")
-
 [node name="GameStateHelper" type="Node" parent="."]
 script = ExtResource("15_u7k4p")
 metadata/_custom_type_script = "uid://dg4jb2fhl8gbi"
 
 [connection signal="area_entered" from="NPC1" to="NPC1" method="_on_area_entered"]
 [connection signal="body_exited" from="NPC1" to="NPC1" method="_on_body_exited"]
+[connection signal="area_entered" from="Checkpoint1" to="Checkpoint1" method="_on_area_entered"]
+[connection signal="area_exited" from="Checkpoint1" to="Checkpoint1" method="_on_area_exited"]
 [connection signal="area_entered" from="Player/playercollider" to="Player/playercollider" method="_on_area_entered"]
 [connection signal="area_exited" from="Player/playercollider" to="Player/playercollider" method="_on_area_exited"]
 [connection signal="body_entered" from="Player/playercollider" to="Player" method="_on_playercollider_body_entered"]
 [connection signal="body_exited" from="Player/playercollider" to="Player/playercollider" method="_on_body_exited"]
-[connection signal="area_entered" from="Checkpoint1" to="." method="_on_checkpoint_1_area_entered"]
