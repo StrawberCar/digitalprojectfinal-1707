@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bvd8y4xvww4ib"]
+[gd_scene load_steps=27 format=3 uid="uid://bvd8y4xvww4ib"]
 
 [ext_resource type="Script" uid="uid://3eyrccb5n7rj" path="res://Assets/Scripts/playerinlevel.gd" id="1_arc0y"]
 [ext_resource type="Texture2D" uid="uid://7e5ihpl4qyrx" path="res://Assets/Images/LevelBG's/forestIntroBG.png" id="1_t7rln"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://uj8dtq8r7inr" path="res://Assets/Scenes/checkpoint.gd" id="9_lxq30"]
 [ext_resource type="Texture2D" uid="uid://d3qg868tubxif" path="res://Assets/Images/savestar.png" id="10_tn6bt"]
 [ext_resource type="Script" uid="uid://dg4jb2fhl8gbi" path="res://addons/game_state_saver/game_state_helper.gd" id="15_u7k4p"]
-[ext_resource type="PackedScene" uid="uid://d1twv18xjoqxv" path="res://save.tscn" id="17_tn6bt"]
 
 [sub_resource type="Gradient" id="Gradient_e2hj7"]
 offsets = PackedFloat32Array(0)
@@ -163,12 +162,6 @@ script = ExtResource("7_l4bgp")
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(-744, 136)
 script = ExtResource("1_arc0y")
-
-[node name="Save" parent="Player" instance=ExtResource("17_tn6bt")]
-visible = false
-z_index = 4096
-offset_top = -128.0
-offset_bottom = -128.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(564, 407.5)

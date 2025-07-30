@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://buwbgh4xeudka"]
+[gd_scene load_steps=49 format=3 uid="uid://buwbgh4xeudka"]
 
 [ext_resource type="Script" uid="uid://r45igd0fq22b" path="res://Assets/Scripts/battlecontroller.gd" id="1_ov64q"]
 [ext_resource type="Texture2D" uid="uid://bl32mygkrnf45" path="res://Assets/Images/LevelBG's/Eye/SnoweyEye1.png" id="2_croke"]
@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://dyd1mwj3rwlng" path="res://Assets/Images/EnemyOutline3.png" id="10_croke"]
 [ext_resource type="AudioStream" uid="uid://cmairsngxngef" path="res://Assets/Audio/draw-sword-357574.mp3" id="11_msfli"]
 [ext_resource type="Texture2D" uid="uid://bce0g85yyc843" path="res://Assets/Images/cancelbutton.png" id="15_croke"]
+[ext_resource type="Script" uid="uid://bb0u20li6vivh" path="res://Assets/Scenes/arrow.gd" id="17_38hp8"]
+[ext_resource type="Texture2D" uid="uid://ceai8c66rkf6v" path="res://Assets/Images/arrows/astararrow.png" id="18_bu02q"]
+[ext_resource type="Texture2D" uid="uid://klrkgxada450" path="res://Assets/Images/MasterFeast-1.png.png" id="19_38hp8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dah4i"]
 shader = ExtResource("4_elo4p")
@@ -355,7 +358,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 0, 0, 0), Color(0.392157, 0, 0, 0.705882)]
+"values": [Color(0.387479, 0.610735, 0, 0), Color(0, 0.294118, 0.0901961, 0.858824)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -471,6 +474,45 @@ colors = PackedColorArray(0.47451, 0, 0.811765, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dss56"]
 gradient = SubResource("Gradient_ssmpr")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxfup"]
+size = Vector2(88, 272)
+
+[sub_resource type="Animation" id="Animation_v31mf"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xdtqw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_31i3d"]
+_data = {
+&"RESET": SubResource("Animation_xdtqw"),
+&"fade": SubResource("Animation_v31mf")
+}
+
 [node name="battlenode" type="Node2D"]
 script = ExtResource("1_ov64q")
 
@@ -509,6 +551,7 @@ vertical_alignment = 1
 [node name="Dodge2" type="Label" parent="Dodge"]
 self_modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_dah4i")
+layout_mode = 0
 offset_top = 554.0
 offset_right = 462.0
 offset_bottom = 664.0
@@ -994,6 +1037,29 @@ offset_top = 475.0
 offset_right = 395.0
 offset_bottom = 506.0
 text = "Reset"
+
+[node name="Arrow" type="Area2D" parent="."]
+visible = false
+script = ExtResource("17_38hp8")
+
+[node name="ArrowSPRITE" type="Sprite2D" parent="Arrow"]
+position = Vector2(344, 144)
+scale = Vector2(0.625, 0.791667)
+texture = ExtResource("18_bu02q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow"]
+position = Vector2(344, 328)
+shape = SubResource("RectangleShape2D_hxfup")
+
+[node name="SpriteSprite" type="Sprite2D" parent="Arrow"]
+position = Vector2(344, 48)
+scale = Vector2(0.781095, 0.766842)
+texture = ExtResource("19_38hp8")
+
+[node name="Fade" type="AnimationPlayer" parent="Arrow"]
+libraries = {
+&"": SubResource("AnimationLibrary_31i3d")
+}
 
 [connection signal="finished" from="Background/AudioStreamPlayer2D" to="Background" method="_on_audio_stream_player_2d_finished"]
 [connection signal="tab_changed" from="AttackOptions" to="." method="_on_tab_container_tab_changed"]

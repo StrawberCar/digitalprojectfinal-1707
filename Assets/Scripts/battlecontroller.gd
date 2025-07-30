@@ -229,6 +229,8 @@ func enemyTurn() -> void:
 	
 	# Start grow animation for player & enemies
 	$PlayerPreview/Player.play("PlayerGrow")
+	$Arrow.show()
+	$Arrow/Fade.play("fade")
 	
 	# Checking what enemies are still alive to determine how many attack cycles to run (i.e. 2 enemies left means 2 attack cycles)
 	var enemyAttacks = enemiesAlive
