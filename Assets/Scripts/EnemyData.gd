@@ -22,6 +22,20 @@ class EnemyInfo:
 		isAlive = _isAlive
 		hasAttacked = _hasAttacked
 		texturepath = _texture
+	
+	func duplicate() -> EnemyInfo:
+		return EnemyInfo.new(
+			tier,
+			health,
+			attack,
+			attackCount,
+			attack_type.duplicate(),
+			isAlive,
+			hasAttacked,
+			texturepath
+		)
+	
+	
 		
 
 #Static enemy definitions
@@ -32,5 +46,5 @@ var Enemy_Data := {
 	#Tier 1 enemies
 	"Basicenemy1": EnemyInfo.new(1, 5, 2, 1, ["Standard"], true, false, "res://Assets/Images/placeholderBE1.png"),
 	"Basicenemy2": EnemyInfo.new(1, 5, 0.5, 4, ["Rapid"], true, false,  "res://Assets/Images/placeholderBE2.png"),
-	"Basicenemy3": EnemyInfo.new(1, 3, 4, 1, ["Standard"], true, false, "res://Assets/Images/placeholderBE3.png")
+	"Basicenemy3": EnemyInfo.new(1, 3, 3, 1, ["Standard"], true, false, "res://Assets/Images/placeholderBE3.png")
 	}

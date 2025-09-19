@@ -75,14 +75,14 @@ func _ready() -> void:
 	
 	var enemy2name = Enemy_enum.keys().pick_random()		#returns the name of the enemy selected - i.e. basicenemy1
 	var enemy3name = Enemy_enum.keys().pick_random()
-	print(enemy1name, " ", enemy2name, " ", enemy3name)
+	print("Enemy 1: ",enemy1name, " Enemy 2: ", enemy2name, " Enemy 3: ", enemy3name)
 	
 	_spawnEnemy(enemy1name, enemy2name, enemy3name)
 	
 
 func _spawnEnemy(_enemy1: String, _enemy2: String, _enemy3: String) -> void:
 	#Enemy 1 setup
-	enemy1_info = Enemies.Enemy_Data.get(_enemy1)
+	enemy1_info = Enemies.Enemy_Data.get(_enemy1).duplicate()
 	enemy1sprite.texture = load(enemy1_info.texturepath)
 	print("Enemy1 texture: ", enemy1_info.texturepath)
 	enemy1HPBar.max_value = enemy1_info.health
@@ -91,7 +91,7 @@ func _spawnEnemy(_enemy1: String, _enemy2: String, _enemy3: String) -> void:
 	enemybuttonselect1.hide()
 	
 	#Enemy 2 setup
-	enemy2_info = Enemies.Enemy_Data.get(_enemy2)
+	enemy2_info = Enemies.Enemy_Data.get(_enemy2).duplicate()
 	enemy2sprite.texture = load(enemy2_info.texturepath)
 	print("Enemy2 texture: ", enemy2_info.texturepath)
 	enemy2HPBar.max_value = enemy2_info.health
@@ -100,7 +100,7 @@ func _spawnEnemy(_enemy1: String, _enemy2: String, _enemy3: String) -> void:
 	enemybuttonselect2.hide()
 	
 	#Enemy 3 setup
-	enemy3_info = Enemies.Enemy_Data.get(_enemy3)
+	enemy3_info = Enemies.Enemy_Data.get(_enemy3).duplicate()
 	enemy3sprite.texture = load(enemy3_info.texturepath)
 	print("Enemy3 texture: ", enemy3_info.texturepath)
 	enemy3HPBar.max_value = enemy3_info.health
@@ -155,7 +155,8 @@ func togglePlayerActions() -> void:
 
 func _on_enemybutton_1_pressed() -> void:
 	enemy1hp -= int(totalDamage)
-	if enemy1hp < 1:
+	print("Player caused Enemy1 damage of: ", totalDamage)
+	if enemy1hp <= 0:
 		print("Enemy1 DED")
 		enemy1sprite.hide()
 		enemy1hp = 0
@@ -167,7 +168,8 @@ func _on_enemybutton_1_pressed() -> void:
 
 func _on_enemybutton_2_pressed() -> void:
 	enemy2hp -= totalDamage
-	if enemy2hp < 1:
+	print("Player caused Enemy2 damage of: ", totalDamage)
+	if enemy2hp <= 0:
 		print("Enemy2 DED")
 		enemy2sprite.hide()
 		enemy2hp = 0
@@ -179,7 +181,8 @@ func _on_enemybutton_2_pressed() -> void:
 
 func _on_enemybutton_3_pressed() -> void:
 	enemy3hp -= totalDamage
-	if enemy3hp < 1:
+	print("Player caused Enemy3 damage of: ", totalDamage)
+	if enemy3hp <= 0:
 		print("enemy3 DED")
 		enemy3sprite.hide()
 		enemy3hp = 0
@@ -192,7 +195,6 @@ func _on_enemybutton_3_pressed() -> void:
 func calculateAttack(damage: float, numberOfAttacks: int) -> void:
 	if isPlayerAttacking:
 		totalDamage = int(damage) + _playerStrength
-		print("Player caused damage of: ", totalDamage)
 	else:
 		# Enemies attack calculation
 		while numberOfAttacks > 0:
@@ -205,6 +207,7 @@ func calculateAttack(damage: float, numberOfAttacks: int) -> void:
 				print("Player received damage of: ", damage)
 				# TODO: death condition check for player - if health = 0 then DED.
 				# TODO: check damage calculation is correct for the different attack types (Rapid or standard)
+				# TODO: update HP stats bar for player
 			numberOfAttacks -= 1
 
 func checkstaminaRemaining() -> void:
@@ -237,23 +240,38 @@ func enemyTurn() -> void:
 	attacker = null
 	
 	while enemyAttacks > 0:
+		# Printing info for debugging purposes
+		print("Enemy attacks remaining: ", enemyAttacks)
+		print("Enemy 3 - Is Alive: ", enemy3_info.isAlive, " Has Attacked: ", enemy3_info.hasAttacked)
+		print("Enemy 2 - Is Alive: ", enemy2_info.isAlive, " Has Attacked: ", enemy2_info.hasAttacked)
+		print("Enemy 1 - Is Alive: ", enemy1_info.isAlive, " Has Attacked: ", enemy1_info.hasAttacked)
+		print("Attacker is currently: ", attacker)
+		
 		if enemy3_info.isAlive && enemy3_info.hasAttacked == false:
 			attacker = enemy3_info
 			currentanim = 3
 			enemy3_info.hasAttacked = true
+			enemyAttacks -= 1
 			print("Attacker is Enemy 3")
+			#await wait_for_space()
 		elif enemy2_info.isAlive && enemy2_info.hasAttacked == false && attacker == null:
 			attacker = enemy2_info
 			currentanim = 2
 			enemy2_info.hasAttacked = true
+			enemyAttacks -= 1
 			print("Attacker is Enemy 2")
+			#await wait_for_space()
 		elif enemy1_info.isAlive && enemy1_info.hasAttacked == false && attacker == null:
 			attacker = enemy1_info
 			currentanim = 1
 			enemy1_info.hasAttacked = true
+			enemyAttacks -= 1
 			print("Attacker is Enemy 1")
+			#await wait_for_space()
 		else:
 			print("No enemies attacks left")
+			#await wait_for_space()
+			break
 			# TODO: add check that enemies are still alive, then return to player turn. If enemies all dead, exit battle function
 		
 		# Start grow animation for enemies
@@ -261,13 +279,19 @@ func enemyTurn() -> void:
 
 		# Calculate attack process and start dodge mechanism
 		calculateAttack(attacker.attack, attacker.attackCount)
-		enemyAttacks -= 1
+		attacker = null
 
 	enemy3_info.hasAttacked = false
 	enemy2_info.hasAttacked = false
 	enemy1_info.hasAttacked = false
 	
-	
+#func wait_for_space():
+	#while true:
+		#if Input.is_key_pressed(KEY_SPACE):
+			#return
+		#await get_tree().process_frame
+
+
 # Basic attack 1 (2 damage, 1 stamina)
 func _on_attack_1_pressed() -> void:
 	print("Player Attacked using button 1!")
@@ -332,7 +356,7 @@ func _on_anim_3_pressed() -> void:
 	$Dodge.show()
 	$PlayerPreview/Player.play("PlayerGrow")
 	$Enemies/enemy3/Grow.play("Grow")
-	currentanim = 3
+	currentanim = 3 
 
 func _on_reset_pressed() -> void:
 	$PlayerPreview/Player.play_backwards("PlayerGrow")
