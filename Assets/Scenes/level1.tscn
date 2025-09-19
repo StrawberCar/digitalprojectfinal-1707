@@ -57,7 +57,7 @@ colors = PackedColorArray(0.19607843, 0.23529412, 0.22352941, 1, 0.078431375, 0.
 gradient = SubResource("Gradient_3t14i")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0e58"]
-size = Vector2(5919, 217)
+size = Vector2(5929, 213)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8j6d2"]
 shader = ExtResource("15_lxq30")
@@ -261,14 +261,14 @@ offset_bottom = 47.0
 
 [node name="ForestIntroBg" type="Sprite2D" parent="Skies"]
 z_index = -4096
-position = Vector2(-573, 403)
-scale = Vector2(13.9286, 18.1333)
+position = Vector2(-573, 423.99963)
+scale = Vector2(13.9286, 17.199986)
 texture = ExtResource("1_t7rln")
 
 [node name="StaticLevel" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticLevel"]
-position = Vector2(2650.5, 715.5)
+position = Vector2(2645.5, 717.5)
 shape = SubResource("RectangleShape2D_k0e58")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticLevel"]
