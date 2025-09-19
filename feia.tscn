@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8jfx68udvqy8"]
+
+[ext_resource type="Texture2D" uid="uid://bsxs3ms35k7xs" path="res://Assets/LevelAssets/Forest/bushtexture.png" id="1_nt8hu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0y5d"]
+size = Vector2(284, 51)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.00001, -63)
+scale = Vector2(1.51335, 1.59189)
+texture = ExtResource("1_nt8hu")
+offset = Vector2(1.33, 6.365)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(9, -1.5)
+shape = SubResource("RectangleShape2D_h0y5d")
+debug_color = Color(0, 0.6, 0.701961, 0.168627)

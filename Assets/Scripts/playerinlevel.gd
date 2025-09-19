@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -31,3 +31,16 @@ func _on_playercollider_body_entered(body: Node2D) -> void:
 func _ready() -> void:
 	if get_parent().is_in_group("ForestLevel"):
 		Global.leveltype = "Forest"
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("left"):
+		$AnimatedSprite2D.play("Walking")
+		$AnimatedSprite2D.flip_h = true
+		
+	elif Input.is_action_pressed("right"):
+		$AnimatedSprite2D.play("Walking")
+		$AnimatedSprite2D.flip_h = false
+
+	else:
+		$AnimatedSprite2D.play("default")
